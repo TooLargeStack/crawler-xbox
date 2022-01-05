@@ -1,0 +1,31 @@
+name: template-workflow
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  check-application:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 15.x]
+
+#     steps:
+#       - name: Prepare environment
+#         uses: actions/checkout@v2
+
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: ${{ matrix.node-version }}
+
+#       - name: Create env file
+#         run: |
+#           touch .env
+#           echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
+#           echo JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }} >> .env
+
+#       - name: Build docker images
+#         run: docker-compose -f ./.docker/docker-compose.ci.yaml up --build -d
