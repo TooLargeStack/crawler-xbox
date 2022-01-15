@@ -1,3 +1,15 @@
-[homepage]
-link = ""
+access_link = "https://www.xbox.com/pt-BR/"
 
+[homepage]
+explore_games = "//*[contains(text(), 'Explorar jogos')]/@href"
+
+[games]
+all_games = "//*[contains(span/text(), 'EXPLORE TODOS OS JOGOS')]/@href"
+
+[all-games]
+access_link = "<access_link>/games/all-games"
+data_script = "//script[contains(text(), '__PRELOADED_STATE__')]/text()"
+products_regex = '/products":{"data":(.*?),"indexes":/gm'
+
+
+# End Of File
