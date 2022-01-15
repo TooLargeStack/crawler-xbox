@@ -1,15 +1,24 @@
 access_link = "https://www.xbox.com/pt-BR/"
 
-[homepage]
+[home]
 explore_games = "//*[contains(text(), 'Explorar jogos')]/@href"
 
 [games]
 all_games = "//*[contains(span/text(), 'EXPLORE TODOS OS JOGOS')]/@href"
 
-[all-games]
+[all_games]
 access_link = "<access_link>/games/all-games"
 data_script = "//script[contains(text(), '__PRELOADED_STATE__')]/text()"
 products_regex = '/products":{"data":(.*?),"indexes":/gm'
+
+[product]
+purchase_section = "//*[contains(@class, 'purchaseSection')]"
+details = "./*/*/*/*"
+title = "./*[contains(@class, 'heading-3')]/text()"
+pricing = "./*[contains(@class, 'pricing')]"
+original_price = "./*/*[contains(@class, 'leftCol')]/*/text()"
+discount_price = "./*/*[contains(@class, 'rightCol')]/*/text()"
+detail_price = "./*/*[contains(@class, 'paragraph')]/text()"
 
 
 # End Of File
