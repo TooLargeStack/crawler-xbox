@@ -3,9 +3,7 @@ from os.path import abspath
 
 import toml
 
-from crawler.sitemap.dataclasses import SiteMap, Category, all_dataclasses
-
-# TODO: import "data type" classes
+from crawler.sitemap.dataclasses import SiteMap, all_dataclasses
 
 __sitemap_data: dict = toml.load(abspath('crawler/sitemap/sitemap.toml'))
 
