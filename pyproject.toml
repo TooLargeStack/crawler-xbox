@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "scrapytemplate"
+name = "xboxCrawler"
 version = "0.1.0"
 description = "Template Repository for Scrapy Crawler Projects"
 authors = ["JPBeckner <pedrobeckner@hotmail.com>"]
