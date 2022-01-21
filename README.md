@@ -1,18 +1,18 @@
-# Scrapy Crawler Template
+# Xbox Crawler
 
-This repository must be used as template for new Scrapy crawler
-projects.
+This project is a web crawler for the Xbox site.
 
 ## Installing
+
+### Requirements
+
+This project requires [Poetry](https://python-poetry.org/) for package managment. So make sure you have it installed, then install the project dependencies.
 
 To install the dependencies for the project:
 
 ```sh
 poetry install
 ```
-
-For dependency managment, [Poetry](https://python-poetry.org/) was trusted.
-So make sure you have it installed, then install the project dependencies.
 
 ## Running
 
