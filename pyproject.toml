@@ -8,9 +8,11 @@ authors = ["JPBeckner <pedrobeckner@hotmail.com>"]
 python = "^3.8"
 scrapy = "2.5"
 toml = "^0.10.2"
+python-dotenv = "^0.19.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
+autopep8 = "^1.6.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
