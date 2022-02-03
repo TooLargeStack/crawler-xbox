@@ -2,7 +2,13 @@ from scrapy.spiders import Spider
 from scrapy.http.request import Request
 from scrapy.responsetypes import Response
 
-from crawler.models import Home
+from models import (
+    Home, 
+    Games,
+    AllGames,
+    Game,
+)
+from items.game import GameItem
 
 
 class ProductSpider(Spider):
@@ -16,6 +22,9 @@ class ProductSpider(Spider):
         super().__init__(name=name, **kwargs)
         
         self.home = Home
+        self.games = Games
+        self.all_games = AllGames
+        self.game = Game
         
     def parse(self, response: Response):
         home = self.home(response)
@@ -26,12 +35,35 @@ class ProductSpider(Spider):
         )
     
     def parse_games(self, response: Response):
-        pass
+        games = self.games(response)
+        
+        yield Request(
+            url=games.all_games,
+            callback=self.parse_all_games
+        )
     
     def parse_all_games(self, response: Response):
-        pass
+        all_games = self.all_games(response)
+        
+        all_codes: list[str] = all_games.all_games_code
+        for game_code in all_codes:
+            yield Request(
+                url=self.game.get_url(product_id=game_code),
+                callback=self.parse_game,
+                cb_kwargs={
+                    'product_id': game_code
+                }
+            )
     
-    def parse_products(self, response: Response):
-        pass
+    def parse_game(self, response: Response, product_id=None):
+        # TODO: ter response com dados corretos.
+        game = self.game(response, product_id=product_id)
+        game.set_prices()
+        yield GameItem({
+            'title': game.title,
+            'site_id': product_id,
+            'original_price': game.original_price,
+            'discount_price': game.discount_price,
+        })
     
 # End Of File
