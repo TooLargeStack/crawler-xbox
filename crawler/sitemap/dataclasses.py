@@ -28,17 +28,12 @@ class AllGames:
     
     
 @dataclass
-class Product:
+class Game:
     
-    name = 'product'
+    name = 'game'
     
-    purchase_section: str
-    details: str
     title: str
-    pricing: str
-    original_price: str
-    discount_price: str
-    detail_price: str
+    prices: str
 
 
 @dataclass
@@ -52,7 +47,7 @@ class SiteMap:
     home: Home
     games: Games
     all_games: AllGames
-    product: Product
+    game: Game
 
 
 # add each maped dataclass
@@ -60,7 +55,7 @@ all_dataclasses = [
     Home,
     Games,
     AllGames,
-    Product,
+    Game,
 ]
 
 # End Of File

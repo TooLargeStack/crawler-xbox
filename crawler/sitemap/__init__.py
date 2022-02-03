@@ -3,7 +3,7 @@ from os.path import abspath
 
 import toml
 
-from crawler.sitemap.dataclasses import SiteMap, all_dataclasses
+from sitemap.dataclasses import SiteMap, all_dataclasses
 
 __sitemap_data: dict = toml.load(abspath('crawler/sitemap/sitemap.toml'))
 
@@ -16,7 +16,6 @@ def sitemap_constructor(sitemap_data: dict) -> SiteMap:
 
     :return: SiteMap object.
     """
-    # recursive check on classes and attributes.
 
     data_map = {}
     for _class in all_dataclasses:
