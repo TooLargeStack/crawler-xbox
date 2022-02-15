@@ -32,18 +32,18 @@ class Game(ResponseModel):
     def title(self) -> str:
         return self.response.xpath(
             self.sitemap.title
-        ).get().strip()
+        ).get(default='Title not found').strip()
         
     def set_prices(self):
         prices = self.response.xpath(
             self.sitemap.prices.format(id=self.product_id)
-        ).get()
+        ).getall()
         self.prices = [
             self.string_to_float(
                 value=price
             )
             for price in prices
-        ]
+        ] or ["0.0"]
     
     @property
     def original_price(self):
@@ -70,7 +70,7 @@ class Game(ResponseModel):
                     pattern='\d+',
                     string=value
                 )
-            )
+            ) or 0
         )
 
 
