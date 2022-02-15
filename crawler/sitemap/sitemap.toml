@@ -13,7 +13,6 @@ products_regex = '(\"products\"\:)(\{\"data\"\:.*?)(,\"indexes\")'
 
 [game]
 title = "//*[contains(@class, 'productTitle')]/text()"
-# TODO: upd prices xpath?
-prices = "//*[contains(@data-m, '{id}')]/*/*[contains(@class, 'Price-module')]/text()"
+prices = "//*[contains(@data-m, '{id}') and contains(@class, 'ProductDetailsPage')]/*[contains(@class, 'ProductDetailsHeader')]/*[contains(@class, 'ProductDetailsHeader')]/*[contains(@class, 'detailContainerRight')]/*[contains(@class, 'price')]/*[contains(@class, 'Price-module')]/text()"
 
 # End Of File
