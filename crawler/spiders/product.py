@@ -56,7 +56,8 @@ class ProductSpider(Spider):
             )
     
     def parse_game(self, response: Response, product_id=None):
-        # TODO: ter response com dados corretos.
+        if not product_id:
+            return
         game = self.game(response, product_id=product_id)
         game.set_prices()
         yield GameItem({
