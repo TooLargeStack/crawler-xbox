@@ -1,5 +1,7 @@
 from re import findall
 
+from scrapy.exceptions import DropItem
+
 from items.game import GameItem
 
 
@@ -11,36 +13,37 @@ class GamePipeline:
         if type(item) != self.item_type:
             return item
         
-        item.set_default('title', "not found")
-        item.set_default('original_price', "0.0")
-        item.set_default('discount_price', "0.0")
-        
+        self.set_default_item(item)
+        self.convert_string_numbers(item)
         return {
+            "siteId": item['site_id'].strip(),
             "title": item['title'].strip(),
-            "originalPrice": self.string_to_float(
-                value=item['original_price'].strip()
-            ),
-            "discountPrice": self.string_to_float(
-                value=item['discount_price'].strip()
-            )
+            "originalPrice": item['original_price'],
+            "discountPrice": item['discount_price']
         }
         
-    def string_to_float(self, value: str) -> float:
-        """
-        Get a string containing the number and convert it to a float.
+    def set_default_item(self, item):
         
-        :param str value: The string to convert.
+        item.setdefault('title', "not found")
+        item.setdefault('original_price', 0.0)
+        item.setdefault('discount_price', 0.0)
         
-        :return: The float value.
-        """
+    def check_valid_item(self, item):
+        # TODO: add log here
+        if item['original_price'] == 0 or not item['site_id']:
+            print(f"item droped {item}")
+            raise DropItem
         
-        return float(
-            '.'.join(
-                findall(
+    def convert_string_numbers(self, item):
+        
+        for key, value in item.items():
+            if type(value) is str and key not in ('title', 'site_id'):
+                numbers = findall(
                     pattern='\d+',
                     string=value
                 )
-            )
-        )
+                if numbers:
+                    print(value)
+                    item[key] = float('.'.join(numbers))
 
 # End Of File
