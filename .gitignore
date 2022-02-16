@@ -41,4 +41,4 @@ env.bak/
 venv.bak/
 
 # local stored data
-local_data.json
+local_data.*
