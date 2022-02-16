@@ -5,12 +5,21 @@ from scrapy.utils.project import get_project_settings
 
 class CrawlerExecutor(CrawlerProcess):
 
-    def __init__(self, spider:CrawlSpider, settings=None, install_root_handler=True):
+    def __init__(
+        self, 
+        spider: CrawlSpider,
+        settings=None,
+        install_root_handler=True
+    ):
         default_settings = get_project_settings()
         if settings is not None:
             default_settings.update(settings)
         
-        super().__init__(settings=settings, install_root_handler=install_root_handler)
+        super().__init__(
+            settings=default_settings,
+            install_root_handler=install_root_handler
+        )
+        
         self.__spider = spider
 
     def execute(self):
