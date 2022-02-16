@@ -1,7 +1,13 @@
+from dotenv import load_dotenv
+
+from spiders.product import ProductSpider
 from executor import CrawlerExecutor
 
 if __name__ == '__main__':
-    executor = CrawlerExecutor()
-    executor.execute()
+    load_dotenv('.env')
+    
+    CrawlerExecutor(
+        spider=ProductSpider
+    ).execute()
 
 # End Of File

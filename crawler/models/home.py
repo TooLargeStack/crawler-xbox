@@ -1,9 +1,10 @@
 from typing import List
+from os import getenv
 
 from scrapy.selector import Selector
 
-from crawler.models.response_model import ResponseModel
-from crawler.sitemap import sitemap
+from models.response_model import ResponseModel
+from sitemap import sitemap
 
 
 class Home(ResponseModel):
@@ -13,9 +14,18 @@ class Home(ResponseModel):
 
     def __init__(self, response) -> None:
         super().__init__(response=response)
+        
+        self.__url = getenv('ACCESS_LINK')
+        
+    @property
+    def url(self) -> str:
+        return self.__url
 
     @property
-    def explore_games(self) -> List[Selector]:
-        return self.response.xpath(self.sitemap.explore_games).get()
+    def explore_games(self) -> str:
+        sufix_url = self.response.xpath(
+            self.sitemap.explore_games
+        ).get().split('/')[-1]
+        return f"{self.url}{sufix_url}"
 
 # End Of File

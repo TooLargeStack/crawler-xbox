@@ -3,7 +3,7 @@ from typing import Union, List
 from scrapy.responsetypes import Response
 from scrapy.selector import Selector
 
-from crawler.sitemap import sitemap
+from sitemap import sitemap
 
 
 class ResponseModel:
