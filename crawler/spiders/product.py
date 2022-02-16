@@ -65,6 +65,7 @@ class ProductSpider(Spider):
             'site_id': product_id,
             'original_price': game.original_price,
             'discount_price': game.discount_price,
+            'image_link': game.image_link
         })
     
 # End Of File

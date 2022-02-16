@@ -19,7 +19,8 @@ class GamePipeline:
             "siteId": item['site_id'].strip(),
             "title": item['title'].strip(),
             "originalPrice": item['original_price'],
-            "discountPrice": item['discount_price']
+            "discountPrice": item['discount_price'],
+            "imageLink": item['image_link'].strip(),
         }
         
     def set_default_item(self, item):
@@ -27,6 +28,7 @@ class GamePipeline:
         item.setdefault('title', "not found")
         item.setdefault('original_price', 0.0)
         item.setdefault('discount_price', 0.0)
+        item.setdefault('image_link', '')
         
     def check_valid_item(self, item):
         # TODO: add log here
@@ -37,7 +39,9 @@ class GamePipeline:
     def convert_string_numbers(self, item):
         
         for key, value in item.items():
-            if type(value) is str and key not in ('title', 'site_id'):
+            if type(value) is str and key in (
+                'original_price', 'discount_price'
+            ):
                 numbers = findall(
                     pattern='\d+',
                     string=value

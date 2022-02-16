@@ -34,6 +34,7 @@ class Game:
     
     title: str
     prices: str
+    image_link: str
 
 
 @dataclass

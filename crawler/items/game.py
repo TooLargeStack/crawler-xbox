@@ -7,5 +7,6 @@ class GameItem(Item):
     site_id = Field()
     original_price = Field()
     discount_price = Field()
+    image_link = Field()
 
 # End Of File

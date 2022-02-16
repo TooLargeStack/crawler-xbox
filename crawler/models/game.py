@@ -54,6 +54,12 @@ class Game(ResponseModel):
         if len(self.prices) > 1:
             return min(self.prices)
         return 0
+    
+    @property
+    def image_link(self):
+        return self.response.xpath(
+            self.sitemap.image_link
+        ).get('').strip()
         
     def string_to_float(self, value: str) -> float:
         """
