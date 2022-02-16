@@ -81,4 +81,18 @@ AUTOTHROTTLE_DEBUG = False
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+# export the data to a file when debug is enabled.
+# FEEDS = {
+#     'local_data.xml': {
+#         'format': 'xml',
+#         'encoding': 'utf8',
+#         'store_empty': False,
+#         'fields': None,
+#         'indent': 4,
+#         'item_export_kwargs': {
+#            'export_empty_fields': True,
+#         },
+#     }
+# }
+
 # End Of File
